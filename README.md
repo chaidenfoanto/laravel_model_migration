@@ -41,7 +41,7 @@ cd <laravel_model_migration>
 ```bash
 composer install
 ```
-3. Konfigurasi File .env: Sesuaikan pengaturan database di file .env.
+3. Konfigurasi File `.env`: Sesuaikan pengaturan database di file `.env.`
 4. Jalankan Migrasi Database:
 ```bash
 php artisan migrate
@@ -49,7 +49,7 @@ php artisan migrate
 
 ## Model
 ### Model `Book`
-Model ini terletak di `app/Models/Book.php` dan memiliki atribut `fillable` untuk kolom berikut:
+Model ini terletak di `app/Models/books.php` dan memiliki atribut `fillable` untuk kolom berikut:
 - `judul`
 - `pengarang`
 - `penerbit`
@@ -57,7 +57,7 @@ Model ini terletak di `app/Models/Book.php` dan memiliki atribut `fillable` untu
 - `stock`
 
 ### Model `Journal`
-Model ini terletak di `app/Models/Journal.php` dan memiliki atribut `fillable` untuk kolom berikut:
+Model ini terletak di `app/Models/journal.php` dan memiliki atribut `fillable` untuk kolom berikut:
 - `judul`
 - `penulis`
 - `tahunTerbit`
@@ -80,17 +80,17 @@ Terdapat di `database/migrations/xxxx_xx_xx_create_journals_table.php`, yang men
 - `tahunTerbit` (date)
 
 ## Penggunaan
-Setelah migrasi berhasil, Anda dapat melakukan operasi CRUD pada tabel `books` dan `journals` melalui model `Book` dan `Journal`.
+Setelah migrasi berhasil, Anda dapat melakukan operasi CRUD pada tabel `books` dan `journals` melalui model `books` dan `journal`.
 
 ### Contoh Penggunaan
-Berikut adalah contoh cara menggunakan model `Book` dan `Journal`:
+Berikut adalah contoh cara menggunakan model `books` dan `journal`:
 
 ```php
-use App\Models\Book;
-use App\Models\Journal;
+use App\Models\books;
+use App\Models\journal;
 
 // Membuat entri baru di tabel books
-Book::create([
+books::create([
     'judul' => 'Contoh Buku',
     'pengarang' => 'Penulis Buku',
     'penerbit' => 'Penerbit Buku',
@@ -99,23 +99,23 @@ Book::create([
 ]);
 
 // Membuat entri baru di tabel journals
-Journal::create([
+journal::create([
     'judul' => 'Contoh Jurnal',
     'penulis' => 'Penulis Jurnal',
     'tahunTerbit' => '2023-01-01'
 ]);
 
 // Mengambil semua buku
-$books = Book::all();
+$books = books::all();
 
 // Mengambil semua jurnal
-$journals = Journal::all();
+$journals = journal::all();
 
 // Mengupdate entri buku
-$book = Book::find(1);
+$book = books::find(1);
 $book->update(['stock' => 15]);
 
 // Menghapus entri jurnal
-$journal = Journal::find(1);
+$journal = journal::find(1);
 $journal->delete();
 ```

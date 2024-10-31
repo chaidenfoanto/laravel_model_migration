@@ -1,4 +1,5 @@
 # Laravel Project - Model & Migration untuk Tabel Books dan Journals
+## Chaiden Richardo Foanto - 0806022310023
 
 ## Deskripsi
 Project ini dibuat sebagai latihan untuk memahami pembuatan model dan migrasi database menggunakan framework Laravel. Project ini terdiri dari dua tabel utama dalam database MySQL, yaitu `books` dan `journals`, yang masing-masing memiliki model dan migrasi tersendiri.

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('penerbit');
             $table->date('tahunTerbit');
             $table->integer('stock')->default(0);
+            $table->timestamps();
         });
     }
 

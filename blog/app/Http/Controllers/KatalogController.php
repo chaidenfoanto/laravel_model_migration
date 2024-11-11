@@ -13,40 +13,37 @@ class KatalogController extends Controller
 {
     public function index(Request $request)
     {
-        // Mendapatkan kategori dan sort dari input
         $category = $request->input('category', 'books');
         $sort = $request->input('sort', 'asc');
 
-        // Memilih model sesuai kategori yang dipilih
-        switch ($category) {
-            case 'books':
-                $model = Book::class;
-                break;
-            case 'journals':
-                $model = Journal::class;
-                break;
-            case 'cds':
-                $model = CD::class;
-                break;
-            case 'newspapers':
-                $model = Newspaper::class;
-                break;
-            case 'final_year_projects':
-                $model = FinalYearProject::class;
-                break;
-            default:
-                $model = Book::class;
-                break;
+        if ($category === 'all') {
+            $books = Book::orderBy('judul', $sort)->get();
+            $journals = Journal::orderBy('judul', $sort)->get();
+            $cds = CD::orderBy('judul', $sort)->get();
+            $newspapers = Newspaper::orderBy('judul', $sort)->get();
+            $final_year_projects = FinalYearProject::orderBy('judul', $sort)->get();
+        } else {
+            $model = match($category) {
+                'books' => Book::class,
+                'journals' => Journal::class,
+                'cds' => CD::class,
+                'newspapers' => Newspaper::class,
+                'final_year_projects' => FinalYearProject::class,
+                default => Book::class,
+            };
+
+            ${$category} = $model::orderBy('judul', $sort)->get();
         }
 
-        // Mengambil data katalog dengan pengurutan sesuai pilihan
-        $catalog = $model::orderBy('judul', $sort)->get();
-
-        // Mengirim data katalog dan input yang dipilih ke view
         return view('catalog.index', [
-            'catalog' => $catalog,
+            'books' => $books ?? [],
+            'journals' => $journals ?? [],
+            'cds' => $cds ?? [],
+            'newspapers' => $newspapers ?? [],
+            'final_year_projects' => $final_year_projects ?? [],
             'selectedCategory' => $category,
             'selectedSort' => $sort,
         ]);
     }
+
 }

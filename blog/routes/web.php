@@ -7,4 +7,4 @@ use App\Http\Controllers\KatalogController;
 //     return view('welcome');
 // });
 
-Route::get('/catalog', [KatalogController::class, 'index'])->name('catalog.index');
+Route::get('/', [KatalogController::class, 'index'])->name('catalog.index');
